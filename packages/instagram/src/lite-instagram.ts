@@ -35,9 +35,9 @@ export class LiteInstagram extends LiteEmbed {
     );
   }
 
-  protected async hydrate(): Promise<void> {
+  protected async hydrate(): Promise<boolean> {
     const shortcode = this.getAttribute('shortcode');
-    if (!shortcode || !/^[A-Za-z0-9_-]+$/.test(shortcode)) return;
+    if (!shortcode || !/^[A-Za-z0-9_-]+$/.test(shortcode)) return false;
 
     const kindAttr = this.getAttribute('kind') ?? 'p';
     const kind: Kind = KINDS.includes(kindAttr as Kind) ? (kindAttr as Kind) : 'p';
@@ -51,14 +51,15 @@ export class LiteInstagram extends LiteEmbed {
     );
     blockquote.setAttribute('data-instgrm-version', '14');
 
+    await loadScript(INSTAGRAM_EMBED_SRC);
+
     this.shadow.innerHTML = '<style>:host{display:block}</style><slot></slot>';
     this.replaceChildren(blockquote);
-
-    await loadScript(INSTAGRAM_EMBED_SRC);
     window.instgrm?.Embeds.process();
 
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
+    return true;
   }
 }

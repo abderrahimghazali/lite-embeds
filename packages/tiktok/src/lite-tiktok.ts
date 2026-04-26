@@ -19,11 +19,11 @@ export class LiteTiktok extends LiteEmbed {
     this.setAttribute('aria-label', username ? `Watch TikTok by @${username}` : 'Watch on TikTok');
   }
 
-  protected hydrate(): void {
+  protected hydrate(): boolean {
     const videoId = this.getAttribute('video-id');
     const username = this.getAttribute('username');
-    if (!videoId || !/^\d+$/.test(videoId)) return;
-    if (!username || !/^[A-Za-z0-9_.]+$/.test(username)) return;
+    if (!videoId || !/^\d+$/.test(videoId)) return false;
+    if (!username || !/^[A-Za-z0-9_.]+$/.test(username)) return false;
 
     const blockquote = document.createElement('blockquote');
     blockquote.className = 'tiktok-embed';
@@ -46,5 +46,6 @@ export class LiteTiktok extends LiteEmbed {
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
+    return true;
   }
 }

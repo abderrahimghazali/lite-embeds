@@ -18,9 +18,9 @@ export class LiteVimeo extends LiteEmbed {
     this.setAttribute('aria-label', title ? `Play ${title} on Vimeo` : 'Play video on Vimeo');
   }
 
-  protected hydrate(): void {
+  protected hydrate(): boolean {
     const id = this.getAttribute('video-id');
-    if (!id || !/^\d+$/.test(id)) return;
+    if (!id || !/^\d+$/.test(id)) return false;
 
     const params = new URLSearchParams({
       autoplay: '1',
@@ -29,10 +29,10 @@ export class LiteVimeo extends LiteEmbed {
       portrait: '0',
     });
     const start = this.getAttribute('start');
-    if (start && /^\d+$/.test(start)) params.set('#t', `${start}s`);
+    const fragment = start && /^\d+$/.test(start) ? `#t=${start}s` : '';
 
     const iframe = document.createElement('iframe');
-    iframe.src = `https://player.vimeo.com/video/${id}?${params.toString()}`;
+    iframe.src = `https://player.vimeo.com/video/${id}?${params.toString()}${fragment}`;
     iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
     iframe.allowFullscreen = true;
     iframe.loading = 'lazy';
@@ -51,5 +51,6 @@ export class LiteVimeo extends LiteEmbed {
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
+    return true;
   }
 }

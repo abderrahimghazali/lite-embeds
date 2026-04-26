@@ -8,16 +8,20 @@ export function loadScript(src: string): Promise<void> {
   const existing = loaded.get(src);
   if (existing) return existing;
 
+  const script = document.createElement('script');
+  script.src = src;
+  script.async = true;
   const promise = new Promise<void>((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
     script.onload = () => resolve();
-    script.onerror = () => reject(new Error(`Failed to load ${src}`));
-    document.head.appendChild(script);
+    script.onerror = () => {
+      loaded.delete(src);
+      script.remove();
+      reject(new Error(`Failed to load ${src}`));
+    };
   });
 
   loaded.set(src, promise);
+  document.head.appendChild(script);
   return promise;
 }
 

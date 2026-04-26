@@ -46,6 +46,20 @@ describe('<lite-spotify>', () => {
     expect(el.getAttribute('aria-label')).toContain('A');
   });
 
+  it('re-renders facade and ARIA while attributes change before hydration', () => {
+    document.body.innerHTML = `
+      <lite-spotify spotify-id="abc123" title="Old title" artist="Old artist"></lite-spotify>
+    `;
+    const el = document.querySelector('lite-spotify') as HTMLElement;
+    el.setAttribute('title', 'New title');
+    el.setAttribute('artist', 'New artist');
+    const html = getShadowHtml('lite-spotify');
+    expect(html).toContain('New title');
+    expect(html).toContain('New artist');
+    expect(html).not.toContain('Old title');
+    expect(el.getAttribute('aria-label')).toContain('New title');
+  });
+
   it('does not load any third-party iframe before user activation', () => {
     document.body.innerHTML = `
       <lite-spotify spotify-id="abc123" title="A"></lite-spotify>
@@ -55,33 +69,54 @@ describe('<lite-spotify>', () => {
     expect(iframe).toBeNull();
   });
 
-  it('hydrates with a Spotify iframe on click', () => {
+  it('hydrates with a Spotify iframe on click', async () => {
     document.body.innerHTML = `
       <lite-spotify spotify-id="4cOdK2wGLETKBW3PvgPWqT" type="track" title="A"></lite-spotify>
     `;
     const el = document.querySelector('lite-spotify') as HTMLElement;
     el.click();
+    await Promise.resolve();
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe).not.toBeNull();
     expect(iframe?.src).toContain('open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT');
   });
 
-  it('rejects invalid spotify-id values', () => {
+  it('rejects invalid spotify-id values', async () => {
     document.body.innerHTML = `
       <lite-spotify spotify-id="../evil/path" title="A"></lite-spotify>
     `;
     const el = document.querySelector('lite-spotify') as HTMLElement;
     el.click();
+    await Promise.resolve();
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe).toBeNull();
   });
 
-  it('rejects unknown type values', () => {
+  it('allows retry after a failed validation', async () => {
+    document.body.innerHTML = `
+      <lite-spotify spotify-id="../evil/path" title="A"></lite-spotify>
+    `;
+    const el = document.querySelector('lite-spotify') as HTMLElement;
+    el.click();
+    await Promise.resolve();
+    expect(el.shadowRoot?.querySelector('iframe')).toBeNull();
+
+    el.setAttribute('spotify-id', '4cOdK2wGLETKBW3PvgPWqT');
+    el.click();
+    await Promise.resolve();
+
+    const iframe = el.shadowRoot?.querySelector('iframe');
+    expect(iframe).not.toBeNull();
+    expect(iframe?.src).toContain('open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT');
+  });
+
+  it('rejects unknown type values', async () => {
     document.body.innerHTML = `
       <lite-spotify spotify-id="abc123" type="evil" title="A"></lite-spotify>
     `;
     const el = document.querySelector('lite-spotify') as HTMLElement;
     el.click();
+    await Promise.resolve();
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe).toBeNull();
   });

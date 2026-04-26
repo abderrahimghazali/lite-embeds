@@ -26,12 +26,12 @@ export class LiteSpotify extends LiteEmbed {
     );
   }
 
-  protected hydrate(): void {
+  protected hydrate(): boolean {
     const id = this.getAttribute('spotify-id');
-    if (!id || !/^[A-Za-z0-9]+$/.test(id)) return;
+    if (!id || !/^[A-Za-z0-9]+$/.test(id)) return false;
 
     const type = (this.getAttribute('type') ?? 'track') as SpotifyType;
-    if (!SPOTIFY_TYPES.includes(type)) return;
+    if (!SPOTIFY_TYPES.includes(type)) return false;
 
     const themeParam = this.getAttribute('theme') === 'dark' ? '?theme=0' : '';
     const iframe = document.createElement('iframe');
@@ -51,5 +51,6 @@ export class LiteSpotify extends LiteEmbed {
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
+    return true;
   }
 }

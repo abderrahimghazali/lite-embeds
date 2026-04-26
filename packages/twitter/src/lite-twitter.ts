@@ -30,9 +30,9 @@ export class LiteTwitter extends LiteEmbed {
     this.setAttribute('aria-label', `Load tweet from ${handle || 'Twitter'}`);
   }
 
-  protected async hydrate(): Promise<void> {
+  protected async hydrate(): Promise<boolean> {
     const tweetId = this.getAttribute('tweet-id');
-    if (!tweetId || !/^\d+$/.test(tweetId)) return;
+    if (!tweetId || !/^\d+$/.test(tweetId)) return false;
 
     const handle = this.getAttribute('handle') ?? 'i';
     const safeHandle = /^[A-Za-z0-9_]+$/.test(handle) ? handle : 'i';
@@ -51,14 +51,15 @@ export class LiteTwitter extends LiteEmbed {
     link.href = `https://twitter.com/${safeHandle}/status/${tweetId}`;
     blockquote.appendChild(link);
 
+    await loadScript(TWITTER_WIDGET_SRC);
+
     this.shadow.innerHTML = '<style>:host{display:block}</style><slot></slot>';
     this.replaceChildren(blockquote);
-
-    await loadScript(TWITTER_WIDGET_SRC);
     window.twttr?.widgets.load(this);
 
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
+    return true;
   }
 }

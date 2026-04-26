@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import '../src/index';
 
 describe('<lite-tiktok>', () => {
@@ -7,6 +7,10 @@ describe('<lite-tiktok>', () => {
     for (const s of Array.from(document.head.querySelectorAll('script'))) {
       if (s.src.includes('tiktok.com')) s.remove();
     }
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   function getShadowHtml(selector: string): string {
@@ -55,35 +59,42 @@ describe('<lite-tiktok>', () => {
     expect(scripts.some((src) => src.includes('tiktok.com'))).toBe(false);
   });
 
-  it('hydrates with a tiktok-embed blockquote on click', () => {
+  it('hydrates with a tiktok-embed blockquote on click', async () => {
+    const appendChild = vi
+      .spyOn(document.head, 'appendChild')
+      .mockImplementation((node: Node): Node => node);
     document.body.innerHTML = `
       <lite-tiktok video-id="7000000000000000000" username="charli"></lite-tiktok>
     `;
     const el = document.querySelector('lite-tiktok') as HTMLElement;
     el.click();
+    await Promise.resolve();
     const blockquote = el.querySelector('blockquote.tiktok-embed');
     expect(blockquote).not.toBeNull();
     expect(blockquote?.getAttribute('cite')).toBe(
       'https://www.tiktok.com/@charli/video/7000000000000000000',
     );
     expect(blockquote?.getAttribute('data-video-id')).toBe('7000000000000000000');
+    expect(appendChild).toHaveBeenCalledWith(expect.any(HTMLScriptElement));
   });
 
-  it('rejects non-numeric video-id', () => {
+  it('rejects non-numeric video-id', async () => {
     document.body.innerHTML = `
       <lite-tiktok video-id="../evil" username="charli"></lite-tiktok>
     `;
     const el = document.querySelector('lite-tiktok') as HTMLElement;
     el.click();
+    await Promise.resolve();
     expect(el.querySelector('blockquote.tiktok-embed')).toBeNull();
   });
 
-  it('rejects unsafe username characters', () => {
+  it('rejects unsafe username characters', async () => {
     document.body.innerHTML = `
       <lite-tiktok video-id="123" username="charli/../"></lite-tiktok>
     `;
     const el = document.querySelector('lite-tiktok') as HTMLElement;
     el.click();
+    await Promise.resolve();
     expect(el.querySelector('blockquote.tiktok-embed')).toBeNull();
   });
 });

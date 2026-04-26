@@ -8,6 +8,7 @@
 export abstract class LiteEmbed extends HTMLElement {
   protected hydrated = false;
   protected shadow: ShadowRoot;
+  private hydrating = false;
 
   constructor() {
     super();
@@ -15,10 +16,17 @@ export abstract class LiteEmbed extends HTMLElement {
   }
 
   connectedCallback(): void {
-    if (this.shadow.childElementCount > 0) return;
+    if (this.shadow.childElementCount === 0) {
+      this.renderFacade();
+    }
+    if (!this.hydrated && !this.hydrating) {
+      this.addActivationListeners();
+    }
+  }
+
+  attributeChangedCallback(): void {
+    if (!this.isConnected || this.hydrated || this.hydrating) return;
     this.renderFacade();
-    this.addEventListener('click', this.activate);
-    this.addEventListener('keydown', this.handleKeydown);
   }
 
   protected handleKeydown = (e: KeyboardEvent): void => {
@@ -29,13 +37,35 @@ export abstract class LiteEmbed extends HTMLElement {
   };
 
   protected activate = (): void => {
-    if (this.hydrated) return;
-    this.hydrated = true;
-    this.removeEventListener('click', this.activate);
-    this.removeEventListener('keydown', this.handleKeydown);
-    void this.hydrate();
+    if (this.hydrated || this.hydrating) return;
+    this.hydrating = true;
+    this.removeActivationListeners();
+    void Promise.resolve(this.hydrate())
+      .then((didHydrate) => {
+        if (didHydrate === false) {
+          this.hydrating = false;
+          this.addActivationListeners();
+          return;
+        }
+        this.hydrated = true;
+        this.hydrating = false;
+      })
+      .catch(() => {
+        this.hydrating = false;
+        this.addActivationListeners();
+      });
   };
 
+  private addActivationListeners(): void {
+    this.addEventListener('click', this.activate);
+    this.addEventListener('keydown', this.handleKeydown);
+  }
+
+  private removeActivationListeners(): void {
+    this.removeEventListener('click', this.activate);
+    this.removeEventListener('keydown', this.handleKeydown);
+  }
+
   protected abstract renderFacade(): void;
-  protected abstract hydrate(): void | Promise<void>;
+  protected abstract hydrate(): boolean | Promise<boolean>;
 }
