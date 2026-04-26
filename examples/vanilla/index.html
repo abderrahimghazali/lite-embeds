@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lite-embed demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 620px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        line-height: 1.5;
+      }
+      h1 {
+        margin-bottom: 0.25rem;
+      }
+      p.muted {
+        color: #666;
+        margin-top: 0;
+      }
+      lite-twitter {
+        display: block;
+        margin: 1.5rem 0;
+      }
+      .label {
+        font-size: 0.85em;
+        color: #888;
+        margin-bottom: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>lite-embed demo</h1>
+    <p class="muted">
+      Open DevTools → Network. No requests to twitter.com until you click an
+      embed below.
+    </p>
+
+    <div class="label">Light theme</div>
+    <lite-twitter
+      tweet-id="20"
+      handle="@jack"
+      text="just setting up my twttr"
+    ></lite-twitter>
+
+    <div class="label">Dark theme</div>
+    <lite-twitter
+      tweet-id="20"
+      handle="@jack"
+      text="just setting up my twttr"
+      theme="dark"
+    ></lite-twitter>
+
+    <script type="module" src="../../packages/twitter/dist/index.js"></script>
+  </body>
+</html>
