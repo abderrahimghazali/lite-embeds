@@ -1,17 +1,17 @@
-# @lite-embed/spotify
+# @lite-embeds/spotify
 
 Privacy-first facade web component for Spotify embeds. Renders a static placeholder; only loads the real `open.spotify.com/embed/...` iframe when the user clicks.
 
 ## Install
 
 ```bash
-npm install @lite-embed/spotify
+npm install @lite-embeds/spotify
 ```
 
 Or via CDN:
 
 ```html
-<script type="module" src="https://unpkg.com/@lite-embed/spotify"></script>
+<script type="module" src="https://unpkg.com/@lite-embeds/spotify"></script>
 ```
 
 ## Usage

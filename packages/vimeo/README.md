@@ -1,17 +1,17 @@
-# @lite-embed/vimeo
+# @lite-embeds/vimeo
 
 Privacy-first facade web component for Vimeo embeds. Renders a static placeholder; only loads the real `player.vimeo.com` iframe when the user clicks.
 
 ## Install
 
 ```bash
-npm install @lite-embed/vimeo
+npm install @lite-embeds/vimeo
 ```
 
 Or via CDN:
 
 ```html
-<script type="module" src="https://unpkg.com/@lite-embed/vimeo"></script>
+<script type="module" src="https://unpkg.com/@lite-embeds/vimeo"></script>
 ```
 
 ## Usage

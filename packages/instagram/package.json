@@ -1,8 +1,27 @@
 {
-  "name": "@lite-embed/instagram",
-  "version": "0.0.1",
-  "description": "Privacy-first facade web component for Instagram embeds",
+  "name": "@lite-embeds/instagram",
+  "version": "0.1.0",
+  "description": "Privacy-first facade web component for Instagram embeds. Renders a static placeholder; only loads the embed script when the user clicks.",
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "instagram",
+    "embed",
+    "facade",
+    "lite",
+    "performance",
+    "privacy",
+    "lazy-load"
+  ],
   "license": "MIT",
+  "author": "Abderrahim Ghazali",
+  "homepage": "https://github.com/abderrahimghazali/lite-embed/tree/main/packages/instagram#readme",
+  "bugs": "https://github.com/abderrahimghazali/lite-embed/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abderrahimghazali/lite-embed.git",
+    "directory": "packages/instagram"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -14,13 +33,17 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": ["dist", "README.md", "LICENSE"],
   "sideEffects": ["./dist/index.js", "./dist/index.cjs"],
   "scripts": {
     "build": "tsup",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
-    "@lite-embed/core": "workspace:*"
+    "@lite-embeds/core": "workspace:^"
   }
 }

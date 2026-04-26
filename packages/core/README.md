@@ -1,6 +1,6 @@
-# @lite-embed/core
+# @lite-embeds/core
 
-Shared base class and helpers for [`lite-embed`](https://github.com/abderrahimghazali/lite-embed) components. You typically don't install this directly — install a platform package such as `@lite-embed/twitter` and the right pieces come along.
+Shared base class and helpers for [`lite-embed`](https://github.com/abderrahimghazali/lite-embed) components. You typically don't install this directly — install a platform package such as `@lite-embeds/twitter` and the right pieces come along.
 
 ## Exports
 

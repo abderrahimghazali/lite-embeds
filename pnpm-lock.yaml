@@ -28,32 +28,32 @@ importers:
 
   packages/instagram:
     dependencies:
-      '@lite-embed/core':
-        specifier: workspace:*
+      '@lite-embeds/core':
+        specifier: workspace:^
         version: link:../core
 
   packages/spotify:
     dependencies:
-      '@lite-embed/core':
-        specifier: workspace:*
+      '@lite-embeds/core':
+        specifier: workspace:^
         version: link:../core
 
   packages/tiktok:
     dependencies:
-      '@lite-embed/core':
-        specifier: workspace:*
+      '@lite-embeds/core':
+        specifier: workspace:^
         version: link:../core
 
   packages/twitter:
     dependencies:
-      '@lite-embed/core':
-        specifier: workspace:*
+      '@lite-embeds/core':
+        specifier: workspace:^
         version: link:../core
 
   packages/vimeo:
     dependencies:
-      '@lite-embed/core':
-        specifier: workspace:*
+      '@lite-embeds/core':
+        specifier: workspace:^
         version: link:../core
 
 packages:

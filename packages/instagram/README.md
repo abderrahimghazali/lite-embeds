@@ -1,17 +1,17 @@
-# @lite-embed/instagram
+# @lite-embeds/instagram
 
 Privacy-first facade web component for Instagram embeds. Renders a static placeholder; only loads `instagram.com/embed.js` when the user clicks.
 
 ## Install
 
 ```bash
-npm install @lite-embed/instagram
+npm install @lite-embeds/instagram
 ```
 
 Or via CDN:
 
 ```html
-<script type="module" src="https://unpkg.com/@lite-embed/instagram"></script>
+<script type="module" src="https://unpkg.com/@lite-embeds/instagram"></script>
 ```
 
 ## Usage

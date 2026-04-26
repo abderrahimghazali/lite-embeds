@@ -1,8 +1,28 @@
 {
-  "name": "@lite-embed/vimeo",
-  "version": "0.0.1",
-  "description": "Privacy-first facade web component for Vimeo embeds",
+  "name": "@lite-embeds/vimeo",
+  "version": "0.1.0",
+  "description": "Privacy-first facade web component for Vimeo embeds. Renders a static placeholder; only loads the real iframe when the user clicks.",
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "vimeo",
+    "embed",
+    "facade",
+    "lite",
+    "video",
+    "performance",
+    "privacy",
+    "lazy-load"
+  ],
   "license": "MIT",
+  "author": "Abderrahim Ghazali",
+  "homepage": "https://github.com/abderrahimghazali/lite-embed/tree/main/packages/vimeo#readme",
+  "bugs": "https://github.com/abderrahimghazali/lite-embed/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abderrahimghazali/lite-embed.git",
+    "directory": "packages/vimeo"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -14,13 +34,17 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": ["dist", "README.md", "LICENSE"],
   "sideEffects": ["./dist/index.js", "./dist/index.cjs"],
   "scripts": {
     "build": "tsup",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
-    "@lite-embed/core": "workspace:*"
+    "@lite-embeds/core": "workspace:^"
   }
 }

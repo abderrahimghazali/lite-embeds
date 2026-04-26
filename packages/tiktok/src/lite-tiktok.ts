@@ -1,4 +1,4 @@
-import { LiteEmbed } from '@lite-embed/core';
+import { LiteEmbed } from '@lite-embeds/core';
 import { renderFacade } from './facade';
 import { styles } from './styles';
 

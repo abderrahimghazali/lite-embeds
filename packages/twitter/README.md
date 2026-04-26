@@ -1,17 +1,17 @@
-# @lite-embed/twitter
+# @lite-embeds/twitter
 
 Privacy-first facade web component for Twitter/X embeds. Renders a static placeholder; only loads `widgets.js` when the user clicks.
 
 ## Install
 
 ```bash
-npm install @lite-embed/twitter
+npm install @lite-embeds/twitter
 ```
 
 Or via CDN:
 
 ```html
-<script type="module" src="https://unpkg.com/@lite-embed/twitter"></script>
+<script type="module" src="https://unpkg.com/@lite-embeds/twitter"></script>
 ```
 
 ## Usage

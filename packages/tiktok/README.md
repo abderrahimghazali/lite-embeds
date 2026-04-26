@@ -1,17 +1,17 @@
-# @lite-embed/tiktok
+# @lite-embeds/tiktok
 
 Privacy-first facade web component for TikTok embeds. Renders a static placeholder; only loads `tiktok.com/embed.js` when the user clicks.
 
 ## Install
 
 ```bash
-npm install @lite-embed/tiktok
+npm install @lite-embeds/tiktok
 ```
 
 Or via CDN:
 
 ```html
-<script type="module" src="https://unpkg.com/@lite-embed/tiktok"></script>
+<script type="module" src="https://unpkg.com/@lite-embeds/tiktok"></script>
 ```
 
 ## Usage

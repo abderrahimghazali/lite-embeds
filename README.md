@@ -12,20 +12,20 @@ Embedding social content (Twitter/X, Instagram, TikTok, Spotify, Vimeo, etc.) cu
 
 | Package | Status |
 |---|---|
-| `@lite-embed/core` | in development |
-| `@lite-embed/twitter` | in development |
-| `@lite-embed/spotify` | in development |
-| `@lite-embed/vimeo` | in development |
-| `@lite-embed/instagram` | in development |
-| `@lite-embed/tiktok` | in development |
-| `@lite-embed/soundcloud` | planned |
-| `@lite-embed/reddit` | planned |
-| `@lite-embed/codepen` | planned |
+| `@lite-embeds/core` | in development |
+| `@lite-embeds/twitter` | in development |
+| `@lite-embeds/spotify` | in development |
+| `@lite-embeds/vimeo` | in development |
+| `@lite-embeds/instagram` | in development |
+| `@lite-embeds/tiktok` | in development |
+| `@lite-embeds/soundcloud` | planned |
+| `@lite-embeds/reddit` | planned |
+| `@lite-embeds/codepen` | planned |
 
 ## Quick start
 
 ```html
-<script type="module" src="https://unpkg.com/@lite-embed/twitter"></script>
+<script type="module" src="https://unpkg.com/@lite-embeds/twitter"></script>
 
 <lite-twitter
   tweet-id="20"

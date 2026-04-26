@@ -1,8 +1,25 @@
 {
-  "name": "@lite-embed/core",
-  "version": "0.0.1",
-  "description": "Shared base class and utilities for lite-embed components",
+  "name": "@lite-embeds/core",
+  "version": "0.1.0",
+  "description": "Shared base class and utilities for lite-embed facade web components",
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "shadow-dom",
+    "facade",
+    "lazy-load",
+    "performance",
+    "privacy"
+  ],
   "license": "MIT",
+  "author": "Abderrahim Ghazali",
+  "homepage": "https://github.com/abderrahimghazali/lite-embed/tree/main/packages/core#readme",
+  "bugs": "https://github.com/abderrahimghazali/lite-embed/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abderrahimghazali/lite-embed.git",
+    "directory": "packages/core"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -14,10 +31,14 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": ["dist", "README.md", "LICENSE"],
   "sideEffects": false,
   "scripts": {
     "build": "tsup",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
