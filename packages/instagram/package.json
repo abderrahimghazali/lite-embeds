@@ -1,6 +1,6 @@
 {
   "name": "@lite-embeds/instagram",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Privacy-first facade web component for Instagram embeds. Renders a static placeholder; only loads the embed script when the user clicks.",
   "keywords": [
     "web-component",
