@@ -6,11 +6,7 @@ declare global {
   interface Window {
     twttr?: {
       widgets: {
-        createTweet: (
-          tweetId: string,
-          target: HTMLElement,
-          options?: Record<string, unknown>,
-        ) => Promise<HTMLElement | undefined>;
+        load: (target?: HTMLElement) => void;
       };
     };
   }
@@ -36,17 +32,30 @@ export class LiteTwitter extends LiteEmbed {
 
   protected async hydrate(): Promise<void> {
     const tweetId = this.getAttribute('tweet-id');
-    if (!tweetId) return;
+    if (!tweetId || !/^\d+$/.test(tweetId)) return;
+
+    const handle = this.getAttribute('handle') ?? 'i';
+    const safeHandle = /^[A-Za-z0-9_]+$/.test(handle) ? handle : 'i';
+
+    // widgets.js sizes the embedded iframe via postMessage, then locates the
+    // iframe by id with `document.getElementById` — which can't pierce shadow
+    // roots. Render the blockquote in light DOM (like Instagram and TikTok)
+    // so the resizer finds the iframe and the embed displays at full height.
+    const blockquote = document.createElement('blockquote');
+    blockquote.className = 'twitter-tweet';
+    const theme = this.getAttribute('theme');
+    if (theme === 'dark' || theme === 'light') {
+      blockquote.setAttribute('data-theme', theme);
+    }
+    const link = document.createElement('a');
+    link.href = `https://twitter.com/${safeHandle}/status/${tweetId}`;
+    blockquote.appendChild(link);
+
+    this.shadow.innerHTML = '<style>:host{display:block}</style><slot></slot>';
+    this.replaceChildren(blockquote);
 
     await loadScript(TWITTER_WIDGET_SRC);
-    if (!window.twttr) return;
-
-    const container = document.createElement('div');
-    this.shadow.replaceChildren(container);
-
-    await window.twttr.widgets.createTweet(tweetId, container, {
-      theme: this.getAttribute('theme') ?? 'light',
-    });
+    window.twttr?.widgets.load(this);
 
     this.removeAttribute('role');
     this.removeAttribute('tabindex');

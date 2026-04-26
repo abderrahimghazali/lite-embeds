@@ -44,7 +44,10 @@ export class LiteSpotify extends LiteEmbed {
     iframe.style.borderRadius = '12px';
     iframe.title = this.getAttribute('title') ?? 'Spotify embed';
 
-    this.shadow.replaceChildren(iframe);
+    // Keep the <style> so :host display/contain rules survive.
+    const facade = this.shadow.querySelector('.facade');
+    if (facade) facade.replaceWith(iframe);
+    else this.shadow.appendChild(iframe);
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');

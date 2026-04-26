@@ -43,7 +43,11 @@ export class LiteVimeo extends LiteEmbed {
     iframe.style.inset = '0';
     iframe.title = this.getAttribute('title') ?? 'Vimeo video';
 
-    this.shadow.replaceChildren(iframe);
+    // Replace only the facade; keep the <style> so :host stays positioned
+    // (the iframe uses position:absolute and needs the host as containing block).
+    const facade = this.shadow.querySelector('.facade');
+    if (facade) facade.replaceWith(iframe);
+    else this.shadow.appendChild(iframe);
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
