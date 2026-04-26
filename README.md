@@ -1,7 +1,7 @@
 # lite-embeds
 
 [![demo](https://img.shields.io/badge/demo-live-000?style=flat-square)](https://lite-embeds-demo.vercel.app/)
-[![license](https://img.shields.io/github/license/abderrahimghazali/lite-embeds?style=flat-square&color=blue)](LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![typescript](https://img.shields.io/badge/typescript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)](#)
 [![dependencies](https://img.shields.io/badge/runtime%20deps-0-success?style=flat-square)](#)
 
