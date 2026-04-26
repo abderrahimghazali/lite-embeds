@@ -15,11 +15,11 @@
   ],
   "license": "MIT",
   "author": "Abderrahim Ghazali",
-  "homepage": "https://github.com/abderrahimghazali/lite-embed/tree/main/packages/instagram#readme",
-  "bugs": "https://github.com/abderrahimghazali/lite-embed/issues",
+  "homepage": "https://github.com/abderrahimghazali/lite-embeds/tree/main/packages/instagram#readme",
+  "bugs": "https://github.com/abderrahimghazali/lite-embeds/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abderrahimghazali/lite-embed.git",
+    "url": "git+https://github.com/abderrahimghazali/lite-embeds.git",
     "directory": "packages/instagram"
   },
   "type": "module",
