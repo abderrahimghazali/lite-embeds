@@ -1,6 +1,6 @@
 {
   "name": "@lite-embeds/twitter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Privacy-first facade web component for Twitter/X embeds. Renders a static placeholder; only loads widgets.js when the user clicks.",
   "keywords": [
     "web-component",
@@ -34,8 +34,15 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
-  "sideEffects": ["./dist/index.js", "./dist/index.cjs"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/index.cjs"
+  ],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
