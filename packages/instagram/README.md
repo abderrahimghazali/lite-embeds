@@ -1,7 +1,7 @@
 # @lite-embeds/instagram
 
 [![npm](https://img.shields.io/npm/v/@lite-embeds/instagram?style=flat-square)](https://www.npmjs.com/package/@lite-embeds/instagram)
-[![bundle](https://img.shields.io/bundlephobia/minzip/@lite-embeds/instagram?style=flat-square&label=gzip)](https://bundlephobia.com/package/@lite-embeds/instagram)
+![bundle](https://img.shields.io/badge/gzip-2.1%20KB-success?style=flat-square)
 [![license](https://img.shields.io/npm/l/@lite-embeds/instagram?style=flat-square&color=blue)](../../LICENSE)
 
 Privacy-first facade web component for Instagram embeds. Renders a static placeholder; only loads `instagram.com/embed.js` when the user clicks.

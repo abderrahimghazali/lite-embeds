@@ -1,7 +1,7 @@
 # @lite-embeds/vimeo
 
 [![npm](https://img.shields.io/npm/v/@lite-embeds/vimeo?style=flat-square)](https://www.npmjs.com/package/@lite-embeds/vimeo)
-[![bundle](https://img.shields.io/bundlephobia/minzip/@lite-embeds/vimeo?style=flat-square&label=gzip)](https://bundlephobia.com/package/@lite-embeds/vimeo)
+![bundle](https://img.shields.io/badge/gzip-1.6%20KB-success?style=flat-square)
 [![license](https://img.shields.io/npm/l/@lite-embeds/vimeo?style=flat-square&color=blue)](../../LICENSE)
 
 Privacy-first facade web component for Vimeo embeds. Renders a static placeholder; only loads the real `player.vimeo.com` iframe when the user clicks.

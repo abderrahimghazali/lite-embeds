@@ -1,7 +1,7 @@
 # @lite-embeds/spotify
 
 [![npm](https://img.shields.io/npm/v/@lite-embeds/spotify?style=flat-square)](https://www.npmjs.com/package/@lite-embeds/spotify)
-[![bundle](https://img.shields.io/bundlephobia/minzip/@lite-embeds/spotify?style=flat-square&label=gzip)](https://bundlephobia.com/package/@lite-embeds/spotify)
+![bundle](https://img.shields.io/badge/gzip-2.0%20KB-success?style=flat-square)
 [![license](https://img.shields.io/npm/l/@lite-embeds/spotify?style=flat-square&color=blue)](../../LICENSE)
 
 Privacy-first facade web component for Spotify embeds. Renders a static placeholder; only loads the real `open.spotify.com/embed/...` iframe when the user clicks.

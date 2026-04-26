@@ -1,7 +1,7 @@
 # @lite-embeds/twitter
 
 [![npm](https://img.shields.io/npm/v/@lite-embeds/twitter?style=flat-square)](https://www.npmjs.com/package/@lite-embeds/twitter)
-[![bundle](https://img.shields.io/bundlephobia/minzip/@lite-embeds/twitter?style=flat-square&label=gzip)](https://bundlephobia.com/package/@lite-embeds/twitter)
+![bundle](https://img.shields.io/badge/gzip-1.6%20KB-success?style=flat-square)
 [![license](https://img.shields.io/npm/l/@lite-embeds/twitter?style=flat-square&color=blue)](../../LICENSE)
 
 Privacy-first facade web component for Twitter/X embeds. Renders a static placeholder; only loads `widgets.js` when the user clicks.
