@@ -1,4 +1,9 @@
-# lite-embed
+# lite-embeds
+
+[![demo](https://img.shields.io/badge/demo-live-000?style=flat-square)](https://lite-embeds-demo.vercel.app/)
+[![license](https://img.shields.io/github/license/abderrahimghazali/lite-embeds?style=flat-square&color=blue)](LICENSE)
+[![typescript](https://img.shields.io/badge/typescript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)](#)
+[![dependencies](https://img.shields.io/badge/runtime%20deps-0-success?style=flat-square)](#)
 
 Lightweight, privacy-first facade web components for social embeds.
 
@@ -6,21 +11,21 @@ Lightweight, privacy-first facade web components for social embeds.
 
 Embedding social content (Twitter/X, Instagram, TikTok, Spotify, Vimeo, etc.) currently requires loading 200KB–2MB of third-party JavaScript per embed. These scripts set cross-site cookies and tracking pixels before the user interacts.
 
-`lite-embed` follows the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) facade pattern: render a static placeholder synchronously, only inflate the real iframe on user click. Each component stays under ~3KB gzipped.
+`lite-embeds` follows the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) facade pattern: render a static placeholder synchronously, only inflate the real iframe on user click. Each component stays under ~3KB gzipped.
 
 ## Packages
 
-| Package | Status |
-|---|---|
-| `@lite-embeds/core` | in development |
-| `@lite-embeds/twitter` | in development |
-| `@lite-embeds/spotify` | in development |
-| `@lite-embeds/vimeo` | in development |
-| `@lite-embeds/instagram` | in development |
-| `@lite-embeds/tiktok` | in development |
-| `@lite-embeds/soundcloud` | planned |
-| `@lite-embeds/reddit` | planned |
-| `@lite-embeds/codepen` | planned |
+| Package | Version | Bundle (gzip) |
+|---|---|---|
+| [`@lite-embeds/core`](packages/core) | [![npm](https://img.shields.io/npm/v/@lite-embeds/core?style=flat-square&label=)](https://www.npmjs.com/package/@lite-embeds/core) | [![size](https://img.shields.io/bundlephobia/minzip/@lite-embeds/core?style=flat-square&label=)](https://bundlephobia.com/package/@lite-embeds/core) |
+| [`@lite-embeds/twitter`](packages/twitter) | [![npm](https://img.shields.io/npm/v/@lite-embeds/twitter?style=flat-square&label=)](https://www.npmjs.com/package/@lite-embeds/twitter) | [![size](https://img.shields.io/bundlephobia/minzip/@lite-embeds/twitter?style=flat-square&label=)](https://bundlephobia.com/package/@lite-embeds/twitter) |
+| [`@lite-embeds/spotify`](packages/spotify) | [![npm](https://img.shields.io/npm/v/@lite-embeds/spotify?style=flat-square&label=)](https://www.npmjs.com/package/@lite-embeds/spotify) | [![size](https://img.shields.io/bundlephobia/minzip/@lite-embeds/spotify?style=flat-square&label=)](https://bundlephobia.com/package/@lite-embeds/spotify) |
+| [`@lite-embeds/vimeo`](packages/vimeo) | [![npm](https://img.shields.io/npm/v/@lite-embeds/vimeo?style=flat-square&label=)](https://www.npmjs.com/package/@lite-embeds/vimeo) | [![size](https://img.shields.io/bundlephobia/minzip/@lite-embeds/vimeo?style=flat-square&label=)](https://bundlephobia.com/package/@lite-embeds/vimeo) |
+| [`@lite-embeds/instagram`](packages/instagram) | [![npm](https://img.shields.io/npm/v/@lite-embeds/instagram?style=flat-square&label=)](https://www.npmjs.com/package/@lite-embeds/instagram) | [![size](https://img.shields.io/bundlephobia/minzip/@lite-embeds/instagram?style=flat-square&label=)](https://bundlephobia.com/package/@lite-embeds/instagram) |
+| [`@lite-embeds/tiktok`](packages/tiktok) | [![npm](https://img.shields.io/npm/v/@lite-embeds/tiktok?style=flat-square&label=)](https://www.npmjs.com/package/@lite-embeds/tiktok) | [![size](https://img.shields.io/bundlephobia/minzip/@lite-embeds/tiktok?style=flat-square&label=)](https://bundlephobia.com/package/@lite-embeds/tiktok) |
+| `@lite-embeds/soundcloud` | _planned_ | — |
+| `@lite-embeds/reddit` | _planned_ | — |
+| `@lite-embeds/codepen` | _planned_ | — |
 
 ## Quick start
 
@@ -35,6 +40,8 @@ Embedding social content (Twitter/X, Instagram, TikTok, Spotify, Vimeo, etc.) cu
 ```
 
 The component renders a static facade. When the user clicks, the official Twitter widget script loads and the real tweet replaces the facade.
+
+See the [live demo](https://lite-embeds-demo.vercel.app/) for all five components in action.
 
 ## Development
 

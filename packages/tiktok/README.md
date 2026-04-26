@@ -1,5 +1,9 @@
 # @lite-embeds/tiktok
 
+[![npm](https://img.shields.io/npm/v/@lite-embeds/tiktok?style=flat-square)](https://www.npmjs.com/package/@lite-embeds/tiktok)
+[![bundle](https://img.shields.io/bundlephobia/minzip/@lite-embeds/tiktok?style=flat-square&label=gzip)](https://bundlephobia.com/package/@lite-embeds/tiktok)
+[![license](https://img.shields.io/npm/l/@lite-embeds/tiktok?style=flat-square&color=blue)](../../LICENSE)
+
 Privacy-first facade web component for TikTok embeds. Renders a static placeholder; only loads `tiktok.com/embed.js` when the user clicks.
 
 ## Install

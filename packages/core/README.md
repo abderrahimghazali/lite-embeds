@@ -1,5 +1,9 @@
 # @lite-embeds/core
 
+[![npm](https://img.shields.io/npm/v/@lite-embeds/core?style=flat-square)](https://www.npmjs.com/package/@lite-embeds/core)
+[![bundle](https://img.shields.io/bundlephobia/minzip/@lite-embeds/core?style=flat-square&label=gzip)](https://bundlephobia.com/package/@lite-embeds/core)
+[![license](https://img.shields.io/npm/l/@lite-embeds/core?style=flat-square&color=blue)](../../LICENSE)
+
 Shared base class and helpers for [`lite-embeds`](https://github.com/abderrahimghazali/lite-embeds) components. You typically don't install this directly — install a platform package such as `@lite-embeds/twitter` and the right pieces come along.
 
 ## Exports
