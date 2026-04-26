@@ -1,0 +1,52 @@
+name: Feature request
+description: Suggest a new feature, attribute, or platform
+title: "[feat]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a brand new platform package (e.g. Reddit, SoundCloud, CodePen), please file under "new package" so we can discuss scope before code lands.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Target package
+      options:
+        - "@lite-embeds/core"
+        - "@lite-embeds/twitter"
+        - "@lite-embeds/instagram"
+        - "@lite-embeds/tiktok"
+        - "@lite-embeds/spotify"
+        - "@lite-embeds/vimeo"
+        - new package
+        - tooling / build / CI
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What's the user-facing problem? Skip the proposed solution for a moment and describe the pain.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How might this work? New attribute, new event, new package?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you've tried, related libraries, or why existing options don't fit.
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Design principles check
+      description: Confirm this aligns with the project's design principles (see CONTRIBUTING.md).
+      options:
+        - label: Keeps the facade-first pattern (no third-party code before user interaction)
+        - label: Adds zero runtime dependencies
+        - label: Stays within the bundle size budget (<3 KB gzip per package)

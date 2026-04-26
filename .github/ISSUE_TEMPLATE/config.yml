@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Live demo
+    url: https://lite-embeds-demo.vercel.app/
+    about: See all components in action before reporting an issue.
+  - name: Question or discussion
+    url: https://github.com/abderrahimghazali/lite-embeds/discussions
+    about: Use Discussions for usage questions and ideas.

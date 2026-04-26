@@ -1,0 +1,96 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly
+title: "[bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. A minimal reproduction is the single most useful thing you can include.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Affected package
+      description: Which package is affected? Pick "multiple" if more than one.
+      options:
+        - "@lite-embeds/core"
+        - "@lite-embeds/twitter"
+        - "@lite-embeds/instagram"
+        - "@lite-embeds/tiktok"
+        - "@lite-embeds/spotify"
+        - "@lite-embeds/vimeo"
+        - multiple
+        - not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      description: e.g. 0.1.1
+      placeholder: 0.1.1
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear, concise description of what's wrong.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Steps to reproduce, plus a link to a minimal repro (StackBlitz, CodeSandbox, or a small public repo).
+      placeholder: |
+        1. Go to ...
+        2. Click on ...
+        3. See error
+
+        Repro: https://stackblitz.com/edit/...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include console errors and screenshots if relevant.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser & OS
+      placeholder: "Chrome 131 / macOS 15.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: framework
+    attributes:
+      label: Framework
+      description: Where are you using the component?
+      options:
+        - Vanilla HTML
+        - React
+        - Vue
+        - Svelte
+        - Solid
+        - Astro
+        - Next.js
+        - Nuxt
+        - SvelteKit
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else worth knowing — CSP rules, ad blockers, framework version, etc.
