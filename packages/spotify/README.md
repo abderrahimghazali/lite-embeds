@@ -1,0 +1,44 @@
+# @lite-embed/spotify
+
+Privacy-first facade web component for Spotify embeds. Renders a static placeholder; only loads the real `open.spotify.com/embed/...` iframe when the user clicks.
+
+## Install
+
+```bash
+npm install @lite-embed/spotify
+```
+
+Or via CDN:
+
+```html
+<script type="module" src="https://unpkg.com/@lite-embed/spotify"></script>
+```
+
+## Usage
+
+```html
+<lite-spotify
+  spotify-id="4cOdK2wGLETKBW3PvgPWqT"
+  type="track"
+  title="One More Time"
+  artist="Daft Punk"
+></lite-spotify>
+```
+
+## Attributes
+
+| Attribute | Required | Description |
+|---|---|---|
+| `spotify-id` | yes | The Spotify ID — the trailing alphanumeric segment in a Spotify URL. |
+| `type` | optional | `track` (default), `album`, `playlist`, `episode`, or `show`. |
+| `title` | recommended | Title shown in the facade. Plain text — HTML is escaped. |
+| `artist` | recommended | Artist / show name shown in the facade. |
+| `theme` | optional | `light` (default) or `dark`. |
+
+## How it works
+
+On insertion, the component renders a static facade in Shadow DOM using only the attributes you provide — no network calls. When the user clicks (or activates via Enter / Space), an `<iframe>` pointing at `open.spotify.com/embed/{type}/{id}` replaces the facade. `spotify-id` is validated against `/^[A-Za-z0-9]+$/` and `type` is validated against the closed enum, so URL injection is impossible.
+
+## License
+
+MIT

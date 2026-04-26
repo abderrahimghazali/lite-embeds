@@ -18,11 +18,22 @@
       h1 {
         margin-bottom: 0.25rem;
       }
+      h2 {
+        margin-top: 2.5rem;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #555;
+      }
       p.muted {
         color: #666;
         margin-top: 0;
       }
-      lite-twitter {
+      lite-twitter,
+      lite-spotify,
+      lite-vimeo,
+      lite-instagram,
+      lite-tiktok {
         display: block;
         margin: 1.5rem 0;
       }
@@ -36,9 +47,11 @@
   <body>
     <h1>lite-embed demo</h1>
     <p class="muted">
-      Open DevTools → Network. No requests to twitter.com until you click an
-      embed below.
+      Open DevTools → Network. No requests to twitter.com, spotify.com, vimeo.com,
+      instagram.com, or tiktok.com until you click an embed below.
     </p>
+
+    <h2>Twitter / X</h2>
 
     <div class="label">Light theme</div>
     <lite-twitter
@@ -55,6 +68,48 @@
       theme="dark"
     ></lite-twitter>
 
+    <h2>Spotify</h2>
+
+    <div class="label">Track</div>
+    <lite-spotify
+      spotify-id="4cOdK2wGLETKBW3PvgPWqT"
+      type="track"
+      title="One More Time"
+      artist="Daft Punk"
+    ></lite-spotify>
+
+    <div class="label">Playlist (dark theme)</div>
+    <lite-spotify
+      spotify-id="37i9dQZF1DXcBWIGoYBM5M"
+      type="playlist"
+      title="Today's Top Hits"
+      artist="Spotify"
+      theme="dark"
+    ></lite-spotify>
+
+    <h2>Vimeo</h2>
+
+    <lite-vimeo video-id="76979871" title="The Mountain"></lite-vimeo>
+
+    <h2>Instagram</h2>
+
+    <lite-instagram
+      shortcode="CwgVbpXOkLn"
+      username="@nasa"
+      caption="A breathtaking view from above."
+    ></lite-instagram>
+
+    <h2>TikTok</h2>
+
+    <lite-tiktok
+      video-id="7106594312292453675"
+      username="charlidamelio"
+    ></lite-tiktok>
+
     <script type="module" src="../../packages/twitter/dist/index.js"></script>
+    <script type="module" src="../../packages/spotify/dist/index.js"></script>
+    <script type="module" src="../../packages/vimeo/dist/index.js"></script>
+    <script type="module" src="../../packages/instagram/dist/index.js"></script>
+    <script type="module" src="../../packages/tiktok/dist/index.js"></script>
   </body>
 </html>

@@ -14,10 +14,10 @@ Embedding social content (Twitter/X, Instagram, TikTok, Spotify, Vimeo, etc.) cu
 |---|---|
 | `@lite-embed/core` | in development |
 | `@lite-embed/twitter` | in development |
-| `@lite-embed/spotify` | planned |
-| `@lite-embed/vimeo` | planned |
-| `@lite-embed/instagram` | planned |
-| `@lite-embed/tiktok` | planned |
+| `@lite-embed/spotify` | in development |
+| `@lite-embed/vimeo` | in development |
+| `@lite-embed/instagram` | in development |
+| `@lite-embed/tiktok` | in development |
 | `@lite-embed/soundcloud` | planned |
 | `@lite-embed/reddit` | planned |
 | `@lite-embed/codepen` | planned |
