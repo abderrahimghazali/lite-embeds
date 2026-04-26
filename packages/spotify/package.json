@@ -33,15 +33,8 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "sideEffects": [
-    "./dist/index.js",
-    "./dist/index.cjs"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
+  "sideEffects": ["./dist/index.js", "./dist/index.cjs"],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
