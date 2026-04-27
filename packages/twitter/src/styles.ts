@@ -8,6 +8,7 @@ export const styles = `
   --lite-twitter-muted: #536471;
   --lite-twitter-border: #cfd9de;
   --lite-twitter-accent: #1d9bf0;
+  position: relative;
 }
 :host([theme="dark"]) {
   --lite-twitter-bg: #15202b;
@@ -19,6 +20,26 @@ export const styles = `
   outline: 2px solid var(--lite-twitter-accent);
   outline-offset: 2px;
   border-radius: 12px;
+}
+:host([loading])::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 3px solid rgba(83, 100, 113, 0.25);
+  border-top-color: var(--lite-twitter-accent);
+  border-radius: 50%;
+  animation: lite-twitter-spin 0.8s linear infinite;
+  pointer-events: none;
+}
+@keyframes lite-twitter-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .facade {
   background: var(--lite-twitter-bg);

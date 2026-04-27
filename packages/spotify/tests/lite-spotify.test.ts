@@ -75,10 +75,14 @@ describe('<lite-spotify>', () => {
     `;
     const el = document.querySelector('lite-spotify') as HTMLElement;
     el.click();
+    expect(el.hasAttribute('loading')).toBe(true);
     await Promise.resolve();
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe).not.toBeNull();
     expect(iframe?.src).toContain('open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT');
+    iframe?.dispatchEvent(new Event('load'));
+    await Promise.resolve();
+    expect(el.hasAttribute('loading')).toBe(false);
   });
 
   it('rejects invalid spotify-id values', async () => {
@@ -108,6 +112,8 @@ describe('<lite-spotify>', () => {
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe).not.toBeNull();
     expect(iframe?.src).toContain('open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT');
+    iframe?.dispatchEvent(new Event('load'));
+    await Promise.resolve();
   });
 
   it('rejects unknown type values', async () => {

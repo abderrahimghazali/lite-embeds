@@ -7,6 +7,21 @@ type SpotifyType = (typeof SPOTIFY_TYPES)[number];
 
 const COMPACT_TYPES: ReadonlySet<SpotifyType> = new Set(['track', 'episode']);
 
+function waitForIframeLoad(iframe: HTMLIFrameElement): Promise<boolean> {
+  return new Promise((resolve) => {
+    const finish = (): void => {
+      iframe.removeEventListener('load', finish);
+      iframe.removeEventListener('error', finish);
+      window.clearTimeout(timeout);
+      resolve(true);
+    };
+
+    iframe.addEventListener('load', finish, { once: true });
+    iframe.addEventListener('error', finish, { once: true });
+    const timeout = window.setTimeout(finish, 8000);
+  });
+}
+
 export class LiteSpotify extends LiteEmbed {
   static get observedAttributes(): string[] {
     return ['spotify-id', 'type', 'title', 'artist', 'theme'];
@@ -26,7 +41,7 @@ export class LiteSpotify extends LiteEmbed {
     );
   }
 
-  protected hydrate(): boolean {
+  protected hydrate(): Promise<boolean> | boolean {
     const id = this.getAttribute('spotify-id');
     if (!id || !/^[A-Za-z0-9]+$/.test(id)) return false;
 
@@ -35,6 +50,7 @@ export class LiteSpotify extends LiteEmbed {
 
     const themeParam = this.getAttribute('theme') === 'dark' ? '?theme=0' : '';
     const iframe = document.createElement('iframe');
+    const loaded = waitForIframeLoad(iframe);
     iframe.src = `https://open.spotify.com/embed/${type}/${id}${themeParam}`;
     iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
     iframe.loading = 'lazy';
@@ -51,6 +67,6 @@ export class LiteSpotify extends LiteEmbed {
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
-    return true;
+    return loaded;
   }
 }

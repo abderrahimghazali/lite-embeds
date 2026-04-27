@@ -17,6 +17,26 @@ export const styles = `
   outline: 2px solid var(--lite-vimeo-accent);
   outline-offset: 2px;
 }
+:host([loading])::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--lite-vimeo-accent);
+  border-radius: 50%;
+  animation: lite-vimeo-spin 0.8s linear infinite;
+  pointer-events: none;
+}
+@keyframes lite-vimeo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .facade {
   position: absolute;
   inset: 0;

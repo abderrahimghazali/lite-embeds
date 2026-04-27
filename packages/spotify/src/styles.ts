@@ -8,6 +8,7 @@ export const styles = `
   --lite-spotify-muted: #6a6a6a;
   --lite-spotify-accent: #1db954;
   max-width: 100%;
+  position: relative;
 }
 :host([theme="dark"]) {
   --lite-spotify-bg: #181818;
@@ -18,6 +19,26 @@ export const styles = `
   outline: 2px solid var(--lite-spotify-accent);
   outline-offset: 2px;
   border-radius: 12px;
+}
+:host([loading])::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 3px solid rgba(106, 106, 106, 0.25);
+  border-top-color: var(--lite-spotify-accent);
+  border-radius: 50%;
+  animation: lite-spotify-spin 0.8s linear infinite;
+  pointer-events: none;
+}
+@keyframes lite-spotify-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .facade {
   background: var(--lite-spotify-bg);

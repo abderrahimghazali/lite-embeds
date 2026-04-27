@@ -75,6 +75,10 @@ describe('<lite-tiktok>', () => {
       'https://www.tiktok.com/@charli/video/7000000000000000000',
     );
     expect(blockquote?.getAttribute('data-video-id')).toBe('7000000000000000000');
+    expect(el.hasAttribute('loading')).toBe(true);
+    el.appendChild(document.createElement('iframe'));
+    await new Promise((resolve) => window.setTimeout(resolve, 0));
+    expect(el.hasAttribute('loading')).toBe(false);
     expect(appendChild).toHaveBeenCalledWith(expect.any(HTMLScriptElement));
   });
 

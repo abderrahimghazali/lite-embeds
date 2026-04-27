@@ -9,11 +9,32 @@ export const styles = `
   --lite-tiktok-pink: #ff0050;
   --lite-tiktok-cyan: #00f2ea;
   max-width: 325px;
+  position: relative;
 }
 :host(:focus-visible) {
   outline: 2px solid var(--lite-tiktok-cyan);
   outline-offset: 2px;
   border-radius: 8px;
+}
+:host([loading])::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 3px solid rgba(255, 255, 255, 0.28);
+  border-top-color: var(--lite-tiktok-cyan);
+  border-radius: 50%;
+  animation: lite-tiktok-spin 0.8s linear infinite;
+  pointer-events: none;
+}
+@keyframes lite-tiktok-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .facade {
   background: var(--lite-tiktok-bg);

@@ -72,11 +72,15 @@ describe('<lite-vimeo>', () => {
     `;
     const el = document.querySelector('lite-vimeo') as HTMLElement;
     el.click();
+    expect(el.hasAttribute('loading')).toBe(true);
     await Promise.resolve();
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe).not.toBeNull();
     expect(iframe?.src).toContain('player.vimeo.com/video/76979871');
     expect(iframe?.src).toContain('autoplay=1');
+    iframe?.dispatchEvent(new Event('load'));
+    await Promise.resolve();
+    expect(el.hasAttribute('loading')).toBe(false);
   });
 
   it('sets Vimeo start time as a URL fragment', async () => {
@@ -89,6 +93,8 @@ describe('<lite-vimeo>', () => {
     const iframe = el.shadowRoot?.querySelector('iframe');
     expect(iframe?.src).toContain('#t=30s');
     expect(iframe?.src).not.toContain('%23t=30s');
+    iframe?.dispatchEvent(new Event('load'));
+    await Promise.resolve();
   });
 
   it('rejects non-numeric video-id', async () => {

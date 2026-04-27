@@ -1,6 +1,6 @@
 {
   "name": "@lite-embeds/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared base class and utilities for lite-embed facade web components",
   "keywords": [
     "web-components",

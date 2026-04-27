@@ -9,11 +9,32 @@ export const styles = `
   --lite-instagram-border: #dbdbdb;
   --lite-instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   max-width: 540px;
+  position: relative;
 }
 :host(:focus-visible) {
   outline: 2px solid #cc2366;
   outline-offset: 2px;
   border-radius: 8px;
+}
+:host([loading])::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border: 3px solid rgba(142, 142, 142, 0.25);
+  border-top-color: #cc2366;
+  border-radius: 50%;
+  animation: lite-instagram-spin 0.8s linear infinite;
+  pointer-events: none;
+}
+@keyframes lite-instagram-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 .facade {
   background: var(--lite-instagram-bg);

@@ -1,4 +1,4 @@
-import { LiteEmbed } from '@lite-embeds/core';
+import { LiteEmbed, waitForElement } from '@lite-embeds/core';
 import { renderFacade } from './facade';
 import { styles } from './styles';
 
@@ -19,7 +19,7 @@ export class LiteTiktok extends LiteEmbed {
     this.setAttribute('aria-label', username ? `Watch TikTok by @${username}` : 'Watch on TikTok');
   }
 
-  protected hydrate(): boolean {
+  protected async hydrate(): Promise<boolean> {
     const videoId = this.getAttribute('video-id');
     const username = this.getAttribute('username');
     if (!videoId || !/^\d+$/.test(videoId)) return false;
@@ -32,7 +32,7 @@ export class LiteTiktok extends LiteEmbed {
     const section = document.createElement('section');
     blockquote.appendChild(section);
 
-    this.shadow.innerHTML = '<style>:host{display:block}</style><slot></slot>';
+    this.shadow.innerHTML = `<style>${styles}</style><slot></slot>`;
     this.replaceChildren(blockquote);
 
     // TikTok's embed.js scans for `.tiktok-embed` blockquotes on each script
@@ -42,6 +42,7 @@ export class LiteTiktok extends LiteEmbed {
     script.src = TIKTOK_EMBED_SRC;
     script.async = true;
     document.head.appendChild(script);
+    await waitForElement(this, 'iframe');
 
     this.removeAttribute('role');
     this.removeAttribute('tabindex');

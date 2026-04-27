@@ -2,6 +2,21 @@ import { LiteEmbed } from '@lite-embeds/core';
 import { renderFacade } from './facade';
 import { styles } from './styles';
 
+function waitForIframeLoad(iframe: HTMLIFrameElement): Promise<boolean> {
+  return new Promise((resolve) => {
+    const finish = (): void => {
+      iframe.removeEventListener('load', finish);
+      iframe.removeEventListener('error', finish);
+      window.clearTimeout(timeout);
+      resolve(true);
+    };
+
+    iframe.addEventListener('load', finish, { once: true });
+    iframe.addEventListener('error', finish, { once: true });
+    const timeout = window.setTimeout(finish, 8000);
+  });
+}
+
 export class LiteVimeo extends LiteEmbed {
   static get observedAttributes(): string[] {
     return ['video-id', 'title', 'thumbnail', 'start'];
@@ -18,7 +33,7 @@ export class LiteVimeo extends LiteEmbed {
     this.setAttribute('aria-label', title ? `Play ${title} on Vimeo` : 'Play video on Vimeo');
   }
 
-  protected hydrate(): boolean {
+  protected hydrate(): Promise<boolean> | boolean {
     const id = this.getAttribute('video-id');
     if (!id || !/^\d+$/.test(id)) return false;
 
@@ -32,6 +47,7 @@ export class LiteVimeo extends LiteEmbed {
     const fragment = start && /^\d+$/.test(start) ? `#t=${start}s` : '';
 
     const iframe = document.createElement('iframe');
+    const loaded = waitForIframeLoad(iframe);
     iframe.src = `https://player.vimeo.com/video/${id}?${params.toString()}${fragment}`;
     iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
     iframe.allowFullscreen = true;
@@ -51,6 +67,6 @@ export class LiteVimeo extends LiteEmbed {
     this.removeAttribute('role');
     this.removeAttribute('tabindex');
     this.removeAttribute('aria-label');
-    return true;
+    return loaded;
   }
 }

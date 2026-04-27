@@ -1,4 +1,4 @@
-import { LiteEmbed, loadScript } from '@lite-embeds/core';
+import { LiteEmbed, loadScript, waitForElement } from '@lite-embeds/core';
 import { renderFacade } from './facade';
 import { styles } from './styles';
 
@@ -53,9 +53,10 @@ export class LiteInstagram extends LiteEmbed {
 
     await loadScript(INSTAGRAM_EMBED_SRC);
 
-    this.shadow.innerHTML = '<style>:host{display:block}</style><slot></slot>';
+    this.shadow.innerHTML = `<style>${styles}</style><slot></slot>`;
     this.replaceChildren(blockquote);
     window.instgrm?.Embeds.process();
+    await waitForElement(this, 'iframe');
 
     this.removeAttribute('role');
     this.removeAttribute('tabindex');

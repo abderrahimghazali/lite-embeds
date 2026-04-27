@@ -39,19 +39,23 @@ export abstract class LiteEmbed extends HTMLElement {
   protected activate = (): void => {
     if (this.hydrated || this.hydrating) return;
     this.hydrating = true;
+    this.setLoading(true);
     this.removeActivationListeners();
     void Promise.resolve(this.hydrate())
       .then((didHydrate) => {
         if (didHydrate === false) {
           this.hydrating = false;
+          this.setLoading(false);
           this.addActivationListeners();
           return;
         }
         this.hydrated = true;
         this.hydrating = false;
+        this.setLoading(false);
       })
       .catch(() => {
         this.hydrating = false;
+        this.setLoading(false);
         this.addActivationListeners();
       });
   };
@@ -64,6 +68,16 @@ export abstract class LiteEmbed extends HTMLElement {
   private removeActivationListeners(): void {
     this.removeEventListener('click', this.activate);
     this.removeEventListener('keydown', this.handleKeydown);
+  }
+
+  private setLoading(loading: boolean): void {
+    if (loading) {
+      this.setAttribute('loading', '');
+      this.setAttribute('aria-busy', 'true');
+      return;
+    }
+    this.removeAttribute('loading');
+    this.removeAttribute('aria-busy');
   }
 
   protected abstract renderFacade(): void;
